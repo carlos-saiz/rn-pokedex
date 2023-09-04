@@ -1,7 +1,7 @@
 import { NavigationContainer } from '@react-navigation/native';
 import React from 'react';
-import { ContextProvider } from './src/context/AppContext';
-import AppNavigator from './src/navigation/AppNavigator';
+import { ContextProvider } from './src/context/Context';
+import AppNavigation from './src/navigation/AppNavigation';
 
 
 export default function App() {
@@ -9,7 +9,7 @@ export default function App() {
   return (
     <ContextProvider>
     <NavigationContainer>
-        <AppNavigator />
+        <AppNavigation />
      </NavigationContainer>
  </ContextProvider>
   );
