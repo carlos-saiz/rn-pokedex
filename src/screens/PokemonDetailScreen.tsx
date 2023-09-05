@@ -52,7 +52,7 @@ const PokemonDetailScreen = () => {
             </View>
             <View style={styles.typeContainer}>
               {types.map((type: { type: { name: string } }, index: number) => (
-                <Text key={inddex} style={styles.typeText}>
+                <Text key={index} style={styles.typeText}>
                   {type.type.name.toUpperCase()}
                 </Text>
               ))}

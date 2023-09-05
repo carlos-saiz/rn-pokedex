@@ -7,6 +7,7 @@ import {
   View,
   ImageBackground,
   TouchableOpacity,
+  ScrollView
 } from "react-native";
 import { useContext } from "react";
 import { AppContext } from "../context/Context";
@@ -20,6 +21,7 @@ export default function HomeScreen() {
 
   return (
     <SafeAreaView style={styles.flexContainer}>
+      <ScrollView contentContainerStyle={styles.scrollContainer}>
       <LinearGradient
         colors={[
           "rgb(254, 240, 138)",
@@ -61,6 +63,7 @@ export default function HomeScreen() {
         )}
     </ImageBackground>
       </LinearGradient>
+      </ScrollView>
     </SafeAreaView>
   );
 }
