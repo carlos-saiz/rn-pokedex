@@ -1,5 +1,13 @@
 import React from "react";
-import { View, Text, TextInput, StyleSheet, SafeAreaView } from "react-native";
+import {
+  View,
+  Text,
+  TextInput,
+  StyleSheet,
+  Image,
+  ImageBackground,
+  SafeAreaView,
+} from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 
 export default function SearchScreen() {
@@ -15,18 +23,29 @@ export default function SearchScreen() {
         start={{ x: 0, y: 0 }}
         end={{ x: 1, y: 1 }}
       >
-        <View style={styles.container}>
-          <Text style={styles.title}>What Pokemon are you looking for?</Text>
-          <View style={styles.searchContainer}>
-            <View style={styles.searchIcon}>
-              <Text>🔍</Text>
-            </View>
-            <TextInput
-              style={styles.searchInput}
-              placeholder="Search Pokemon, ability, move..."
+        <ImageBackground
+          source={require("../../assets/shapes.png")}
+          imageStyle={styles.backgroundImage}
+        >
+          <View style={styles.container}>
+            <Image
+              source={require("../../assets/pikachu.png")}
+              style={styles.pikachu}
             />
+
+            <Text style={styles.title}>What Pokemon are you looking for?</Text>
+
+            <View style={styles.searchContainer}>
+              <View style={styles.searchIcon}>
+                <Text>🔍</Text>
+              </View>
+              <TextInput
+                style={styles.searchInput}
+                placeholder="Search Pokemon, ability, move..."
+              />
+            </View>
           </View>
-        </View>
+        </ImageBackground>
       </LinearGradient>
     </SafeAreaView>
   );
@@ -42,6 +61,13 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 16,
+    marginTop: 170,
+  },
+  backgroundImage: {
+    opacity: 0.1,
+    width: 420,
+    height: 420,
+    top: -50,
   },
   title: {
     fontSize: 34,
@@ -49,10 +75,10 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     color: "white",
     marginBottom: 25,
-    marginTop: 50,
-    textShadowColor: "rgba(0, 0, 0, 0.4)", // Color de la sombra
-    textShadowOffset: { width: 1, height: 1 }, // Desplazamiento de la sombra
-    textShadowRadius: 7, // Radio de la sombra
+    marginTop: 5,
+    textShadowColor: "rgba(0, 0, 0, 0.4)",
+    textShadowOffset: { width: 1, height: 1 },
+    textShadowRadius: 7,
   },
   searchContainer: {
     flexDirection: "row",
@@ -60,14 +86,26 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     borderRadius: 20,
     paddingHorizontal: 12,
-    margin: 10,
+    padding: 15,
+    marginBottom: 20,
+    elevation: 5,
+    shadowColor: "rgba(0, 0, 0, 0.2)",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 1,
+    shadowRadius: 4,
   },
   searchInput: {
     flex: 1,
-    paddingVertical: 10,
     color: "grey",
   },
   searchIcon: {
-    padding: 10,
+    paddingRight: 10,
+    marginHorizontal: 20,
+  },
+  pikachu: {
+    width: 250,
+    height: 150,
+    marginLeft: 20,
+    zIndex: 1000,
   },
 });

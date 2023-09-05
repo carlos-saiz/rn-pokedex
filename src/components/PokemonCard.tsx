@@ -8,6 +8,7 @@ import {
   ImageBackground,
 } from "react-native";
 import useFetch from "../hooks/useFetch";
+import { background } from "../utils/BackgroundsByType";
 
 interface PokemonCardProps {
   url: string;
@@ -15,7 +16,8 @@ interface PokemonCardProps {
 
 export function PokemonCard({ url }: PokemonCardProps) {
   const { data, loading, error } = useFetch(url);
-  console.log(data);
+
+  const backgroundSelected = background[data?.types[0]?.type?.name];
 
   if (loading) {
     return <Text>Loading...</Text>;
@@ -26,7 +28,8 @@ export function PokemonCard({ url }: PokemonCardProps) {
   }
 
   return (
-    <View style={styles.card}>
+    <View style={[styles.card, { backgroundColor: backgroundSelected }]}>
+      {" "}
       <View style={styles.textContainer}>
         <Text style={styles.name}>{data.name}</Text>
         <Text style={styles.id}>#{data.id}</Text>
@@ -38,13 +41,13 @@ export function PokemonCard({ url }: PokemonCardProps) {
           }}
           style={styles.image}
         />
-        </View>
-        <View style={styles.pokeBallContainer}>
+      </View>
+      <View style={styles.pokeBallContainer}>
         <Image
           source={require("../../assets/pokemonBall.png")}
           style={styles.pokeBall}
         />
-         </View>
+      </View>
     </View>
   );
 }
@@ -54,7 +57,7 @@ const styles = StyleSheet.create({
     alignItems: "flex-start",
     width: 170,
     height: 120,
-    backgroundColor: "white",
+    backgroundColor: "rgba(255, 255, 255, 0.75)",
     borderRadius: 8,
     elevation: 5,
     shadowColor: "rgba(0, 0, 0, 0.5)",
@@ -70,6 +73,7 @@ const styles = StyleSheet.create({
     width: 100,
     height: 100,
     zIndex: 100,
+    backgroundColor: "transparent",
   },
   image: {
     width: "90%",
@@ -78,18 +82,19 @@ const styles = StyleSheet.create({
   pokeBallContainer: {
     justifyContent: "center",
     alignItems: "center",
-    left: 125, 
-    bottom: 5
+    left: 125,
+    bottom: 35,
   },
   pokeBall: {
-    opacity: 0.05,
+    opacity: 0.04,
     width: 95,
     height: 95,
     position: "absolute",
   },
   textContainer: {
     flexDirection: "column",
-    padding: 15
+    padding: 15,
+    backgroundColor: "transparent",
   },
   name: {
     fontWeight: "bold",
@@ -97,7 +102,8 @@ const styles = StyleSheet.create({
   },
   id: {
     fontWeight: "bold",
-    color: "grey",
-    fontSize: 15,
-  }
+    color: "white",
+    fontSize: 42,
+    opacity: 0.6,
+  },
 });
